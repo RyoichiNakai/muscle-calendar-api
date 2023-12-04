@@ -1,4 +1,5 @@
-SERVICE_NAME := muscle-calendar-api # 環境変数として渡した方がいいか
+# 環境変数として渡した方がいいか
+SERVICE_NAME := muscle-calendar-api
 MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PATH):${MAKEFILE_DIR}bin
 SHELL := env PATH="$(PATH)" /bin/bash
@@ -14,6 +15,9 @@ build-linux:
 mod:
 	go mod download
 
+tidy:
+	go mod tidy
+
 test:
 	go test $(shell go list ${MAKEFILE_DIR}/...)
 
@@ -27,4 +31,4 @@ lint:
 vet:
 	go vet ./...
 
-.PHONY:	build mod test lint vet clean
+.PHONY:	build mod tidy test lint vet swag

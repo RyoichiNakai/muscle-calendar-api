@@ -132,3 +132,4 @@ tmp/*
 
 .env
 .data/
+build/

@@ -12,6 +12,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./mysql:/etc/mysql/conf.d
+      - "./.data/mysql:/var/lib/mysql"
     healthcheck: # here
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "user"]
       interval: 10s
@@ -29,6 +30,9 @@ services:
       target: dev
     working_dir: "/work/src/"
     command: ["air", "-c", ".air.toml"]
+    volumes:
+      - ".:/work/src"
+      - "./.data/go-pkg:/go/pkg/mod/cache"
     ports:
       - 8080:8080
     depends_on:
@@ -42,5 +46,6 @@ services:
       start_period: 15s
     restart: on-failure
     environment:
-      - RELEASE_VERSION=LOCAL
-      - COMMIT_HASH=LOCAL
+      RELEASE_VERSION: LOCAL
+      COMMIT_HASH: LOCAL
+      MYSQL_HOST: "mysql:3306"
