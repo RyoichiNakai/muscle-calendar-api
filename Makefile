@@ -31,4 +31,4 @@ lint:
 vet:
 	go vet ./...
 
-.PHONY:	build mod tidy test lint vet swag
+.PHONY:	build mod tidy test lint vet

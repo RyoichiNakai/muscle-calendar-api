@@ -7,7 +7,7 @@ tmp_dir = "build"
 
 [build]
 # Just plain old shell command. You could use `make` as well.
-cmd = "make swag build"
+cmd = "make build"
 # Binary file yields from `cmd`.
 bin = "build/app"
 # Watch these filename extensions.

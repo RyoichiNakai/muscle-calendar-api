@@ -7,7 +7,6 @@ ARG SERVICE_NAME=muscle-calendar-api
 WORKDIR /work/src/
 
 RUN go install github.com/cosmtrek/air@latest
-RUN go install github.com/swaggo/swag/cmd/swag@latest
 
 COPY ./ ./
 RUN make mod build-linux
